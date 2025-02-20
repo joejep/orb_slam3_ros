@@ -461,7 +461,16 @@ void Optimizer::FullInertialBA(Map *pMap, int its, const bool bFixLocal, const l
         VG->setId(4*maxKFid+2);
         VG->setFixed(false);
         optimizer.addVertex(VG);
+        KeyFrame* pIncKF = nullptr;  // Or initialize with appropriate value
         VertexAccBias* VA = new VertexAccBias(pIncKF);
+
+
+        // Around line 464, ensure pIncKF is initialized:
+
+
+
+
+        
         VA->setId(4*maxKFid+3);
         VA->setFixed(false);
         optimizer.addVertex(VA);
@@ -493,11 +502,10 @@ void Optimizer::FullInertialBA(Map *pMap, int its, const bool bFixLocal, const l
                 pKFi->mpImuPreintegrated->SetNewBias(pKFi->mPrevKF->GetImuBias());
                 g2o::HyperGraph::Vertex* VP1 = optimizer.vertex(pKFi->mPrevKF->mnId);
                 g2o::HyperGraph::Vertex* VV1 = optimizer.vertex(maxKFid+3*(pKFi->mPrevKF->mnId)+1);
-
                 g2o::HyperGraph::Vertex* VG1;
                 g2o::HyperGraph::Vertex* VA1;
-                g2o::HyperGraph::Vertex* VG2;
-                g2o::HyperGraph::Vertex* VA2;
+                g2o::HyperGraph::Vertex* VG2= nullptr;
+                g2o::HyperGraph::Vertex* VA2= nullptr;
                 if (!bInit)
                 {
                     VG1 = optimizer.vertex(maxKFid+3*(pKFi->mPrevKF->mnId)+2);
