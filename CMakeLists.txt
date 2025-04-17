@@ -1,5 +1,11 @@
+cmake_minimum_required(VERSION 3.5)  # Update from 2.8
+
+
+# Set C++14 as standard
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 add_compile_options(-std=c++14)
-cmake_minimum_required(VERSION 2.8)
 project(orb_slam3_ros)
 
 IF(NOT CMAKE_BUILD_TYPE)
